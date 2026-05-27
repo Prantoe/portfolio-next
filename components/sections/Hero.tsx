@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
 import Image from "next/image";
 import { personal } from "@/data/content";
 import { FiGithub, FiLinkedin, FiInstagram, FiFileText } from "react-icons/fi";
@@ -21,6 +21,33 @@ export default function Hero() {
   const scroll = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
+  const [onGold, setOnGold] = useState(false);
+  const photoContainerRef = useRef<HTMLDivElement>(null);
+  const scanY = useMotionValue(-20);
+
+  useEffect(() => {
+    const el = document.querySelector("#about");
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => setOnGold(e.isIntersecting), { threshold: 0.1 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loop = async () => {
+      if (cancelled) return;
+      const h = photoContainerRef.current?.offsetHeight ?? 600;
+      scanY.set(-20);
+      await animate(scanY, h + 20, { duration: 3.5, ease: "linear" });
+      if (cancelled) return;
+      await new Promise<void>(r => setTimeout(r, 4000 + Math.random() * 3000));
+      loop();
+    };
+    const t = setTimeout(loop, 1500 + Math.random() * 1000);
+    return () => { cancelled = true; clearTimeout(t); };
+  }, [scanY]);
+
   return (
     <section
       id="home"
@@ -30,7 +57,6 @@ export default function Hero() {
         display: "flex",
         flexDirection: isMobile ? "column" : "row",
         overflow: "hidden",
-        backgroundColor: "#0c0e0c",
       }}
     >
       {/* Radial glow */}
@@ -66,6 +92,7 @@ export default function Hero() {
         }}>
           <div style={{ position: "absolute", inset: 0, backgroundColor: "#D4AF37", clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }} />
           <div
+            ref={photoContainerRef}
             style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", clipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 82% 100%, 0% 100%)" }}
             onMouseEnter={() => setPhotoHovered(true)}
             onMouseLeave={() => setPhotoHovered(false)}
@@ -77,6 +104,7 @@ export default function Hero() {
               style={{ filter: photoHovered ? "grayscale(70%)" : "grayscale(100%)", objectFit: "cover", objectPosition: "center top", transition: "filter 0.5s ease" }}
               priority
             />
+            <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: "#D4AF37", mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
           </div>
         </div>
       </div>
@@ -116,9 +144,9 @@ export default function Hero() {
           style={{ display: "flex", gap: "12px", marginBottom: "24px", flexWrap: "wrap" }}
         >
           <button onClick={() => scroll("#projects")}
-            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: "#D4AF37", color: "#0c0e0c", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: "none", cursor: "pointer", transition: "background-color 0.2s" }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#ffffff")}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#D4AF37")}
+            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: "#D4AF37", color: "#0c0e0c", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: "2px solid #D4AF37", cursor: "pointer", transition: "background-color 0.2s, color 0.2s" }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#0c0e0c"; e.currentTarget.style.color = "#ffffff"; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#D4AF37"; e.currentTarget.style.color = "#0c0e0c"; }}
           >
             My Projects
           </button>
@@ -150,11 +178,11 @@ export default function Hero() {
       <motion.button
         initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
         onClick={() => scroll("#contact")}
-        style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 50, width: "48px", height: "48px", borderRadius: "50%", backgroundColor: "#D4AF37", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 28px rgba(212,175,55,0.55)", border: "none", cursor: "pointer" }}
+        style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 50, width: "48px", height: "48px", borderRadius: "50%", backgroundColor: onGold ? "#0c0e0c" : "#D4AF37", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: onGold ? "0 0 28px rgba(0,0,0,0.4)" : "0 0 28px rgba(212,175,55,0.55)", border: onGold ? "2px solid #D4AF37" : "none", cursor: "pointer", transition: "background-color 0.3s, box-shadow 0.3s, border 0.3s" }}
         aria-label="Contact"
       >
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#0c0e0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke={onGold ? "#D4AF37" : "#0c0e0c"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </motion.button>
     </section>

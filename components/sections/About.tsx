@@ -45,7 +45,7 @@ export default function About() {
   const scale2   = useTransform(sp2, [0.72, 1], [1, 0.80]);
   const opacity2 = useTransform(sp2, [0.88, 0.98], [1, 0]);
 
-  const p = isMobile ? "72px 24px 48px" : "96px 64px 60px";
+  const p = isMobile ? "64px 24px 48px" : "72px 64px 60px";
   const p2 = isMobile ? "72px 24px 48px" : "96px 64px 56px";
 
   return (
@@ -54,14 +54,14 @@ export default function About() {
       <div id="about" ref={panel1Ref} style={{ height: isMobile ? "auto" : "200vh", position: "relative" }}>
         <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100vh", overflow: isMobile ? "visible" : "hidden" }}>
           <motion.div style={isMobile ? {} : { rotateX: rotateX1, scale: scale1, opacity: opacity1, transformPerspective: 1400, transformOrigin: "top center", height: "100%" }}>
-            <div style={{ backgroundColor: "#D4AF37", color: "#0c0e0c", padding: p, height: isMobile ? "auto" : "100%", boxSizing: "border-box" }}>
+            <div className="no-scrollbar" style={{ backgroundColor: "#D4AF37", color: "#0c0e0c", padding: p, height: isMobile ? "auto" : "100%", boxSizing: "border-box", overflowY: isMobile ? "visible" : "auto", scrollbarWidth: "none" }}>
               <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
-                <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(12,14,12,0.45)", marginBottom: "18px" }}>
+                <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.4em", color: "rgba(12,14,12,0.45)", marginBottom: "10px", marginTop: "24px" }}>
                   About Me
                 </motion.p>
 
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "20px" : "56px", marginBottom: "28px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "20px" : "56px", marginBottom: "16px" }}>
                   <motion.h2 {...fadeUp(0.07)} style={{ fontSize: isMobile ? "1.8rem" : "clamp(1.8rem, 3vw, 2.9rem)", fontWeight: 900, lineHeight: 1.08, letterSpacing: "-0.02em" }}>
                     Helping brands stand out through great software.
                   </motion.h2>
@@ -83,7 +83,7 @@ export default function About() {
                 </div>
 
                 {/* Stats */}
-                <motion.div {...fadeUp(0.18)} style={{ display: "flex", borderTop: "1px solid rgba(12,14,12,0.15)", borderBottom: "1px solid rgba(12,14,12,0.15)", padding: "12px 0", marginBottom: "28px" }}>
+                <motion.div {...fadeUp(0.18)} style={{ display: "flex", borderTop: "1px solid rgba(12,14,12,0.15)", borderBottom: "1px solid rgba(12,14,12,0.15)", padding: "12px 0", marginBottom: "16px" }}>
                   {stats.map((s, i) => (
                     <div key={i} style={{ paddingRight: isMobile ? "16px" : "32px", borderRight: i < stats.length - 1 ? "1px solid rgba(12,14,12,0.15)" : "none", paddingLeft: i > 0 ? (isMobile ? "16px" : "32px") : "0" }}>
                       <p style={{ fontSize: isMobile ? "20px" : "24px", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.03em" }}>{s.value}</p>

@@ -14,6 +14,7 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 html {
@@ -27,6 +28,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  cursor: none;
 }
 
 /* Grid background — mirip anish7.me */
@@ -55,3 +57,8 @@ body > * {
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: #0c0e0c; }
 ::-webkit-scrollbar-thumb { background: #2a2e28; border-radius: 2px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+
+
