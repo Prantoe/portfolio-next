@@ -125,7 +125,7 @@ export default function Hero() {
             <ScrambleText className="text-[#555]" />{" "}There!
           </h1>
           <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(3rem, 4.5vw, 2.5rem)" }}>
-            Im{" "}
+            I'm{" "}
             <span className="italic text-[#D4AF37]" style={{ fontFamily: "var(--font-serif)", fontSize: isMobile ? "2rem" : "60px", fontWeight: 400 }}>
               Pranto Soearno
             </span>
