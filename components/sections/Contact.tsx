@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: "#0c0e0c", borderTop: "1px solid #1c1e1c", padding: isMobile ? "120px 24px 80px" : "160px 64px 120px" }}
+      style={{ backgroundColor: "#0c0e0c", borderTop: "1px solid #1c1e1c", padding: isMobile ? "64px 24px" : "160px 64px 120px" }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "80px", alignItems: "start" }}>
 
