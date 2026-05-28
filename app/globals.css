@@ -1,10 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0c0e0c;
-  --accent: var(--primary, #D4AF37);
-  --text: #ffffff;
-  --muted: #6b7068;
+  --accent: var(--primary, #8CC0EB);
 }
 
 @theme inline {
@@ -24,25 +21,25 @@
 
 html {
   scroll-behavior: smooth;
-  background: #0c0e0c;
+  background: var(--bg, #C5BAA3);
 }
 
 body {
-  background: #0c0e0c;
-  color: #ffffff;
+  background: var(--bg, #C5BAA3);
+  color: var(--text, #1a1816);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Grid background — mirip anish7.me */
+/* Grid background */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(212,175,55,0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212,175,55,0.055) 1px, transparent 1px);
+    linear-gradient(var(--grid, rgba(26,24,22,0.07)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid, rgba(26,24,22,0.07)) 1px, transparent 1px);
   background-size: 55px 55px;
   pointer-events: none;
   z-index: 0;
@@ -54,15 +51,12 @@ body > * {
 }
 
 ::selection {
-  background: var(--primary, #D4AF37);
-  color: #0c0e0c;
+  background: var(--primary, #8CC0EB);
+  color: #1a1816;
 }
 
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #0c0e0c; }
-::-webkit-scrollbar-thumb { background: #2a2e28; border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg, #C5BAA3); }
+::-webkit-scrollbar-thumb { background: var(--border, #C8BFB0); border-radius: 2px; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
-
-
-

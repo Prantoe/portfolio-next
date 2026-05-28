@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { primary, primaryRgb, background, foreground, muted, borderColor, subtle } from "@/lib/theme";
 
 const pillars = [
   {
@@ -55,8 +56,8 @@ export default function WhatIDo() {
             transformPerspective: 1400,
             transformOrigin: "top center",
             height: "100%",
-            backgroundColor: "#0c0e0c",
-            borderTop: "1px solid #1c1e1c",
+            backgroundColor: background,
+            borderTop: `1px solid ${borderColor}`,
           }}
         >
           <div
@@ -76,7 +77,7 @@ export default function WhatIDo() {
                 fontSize: "11px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#D4AF37",
+                color: primary,
                 marginBottom: "0",
               }}
             >
@@ -102,17 +103,17 @@ export default function WhatIDo() {
                     fontWeight: 900,
                     lineHeight: 1.05,
                     letterSpacing: "-0.02em",
-                    color: "#e8ebe5",
+                    color: foreground,
                     marginBottom: "20px",
                   }}
                 >
                   I build both the product{" "}
-                  <span style={{ color: "#555c52" }}>and the experience.</span>
+                  <span style={{ color: muted }}>and the experience.</span>
                 </motion.h2>
                 <motion.p
                   {...fadeIn(0.16)}
                   style={{
-                    color: "#555c52",
+                    color: muted,
                     fontSize: "15px",
                     lineHeight: 1.7,
                     maxWidth: "380px",
@@ -140,21 +141,21 @@ export default function WhatIDo() {
                     style={{
                       padding: "22px",
                       borderRadius: "16px",
-                      border: "1px solid #1c1e1c",
-                      backgroundColor: "#0f1110",
+                      border: `1px solid ${borderColor}`,
+                      backgroundColor: subtle,
                       cursor: "default",
                       transition: "border-color 0.2s",
                     }}
                     onMouseEnter={e =>
-                      ((e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.2)")
+                      ((e.currentTarget as HTMLElement).style.borderColor = `rgba(${primaryRgb},0.4)`)
                     }
                     onMouseLeave={e =>
-                      ((e.currentTarget as HTMLElement).style.borderColor = "#1c1e1c")
+                      ((e.currentTarget as HTMLElement).style.borderColor = borderColor)
                     }
                   >
                     <span
                       style={{
-                        color: "#D4AF37",
+                        color: primary,
                         fontSize: "20px",
                         display: "block",
                         marginBottom: "14px",
@@ -166,14 +167,14 @@ export default function WhatIDo() {
                       style={{
                         fontSize: "13px",
                         fontWeight: 600,
-                        color: "#e8ebe5",
+                        color: foreground,
                         marginBottom: "8px",
                         lineHeight: 1.3,
                       }}
                     >
                       {p.label}
                     </h3>
-                    <p style={{ fontSize: "12px", color: "#555c52", lineHeight: 1.6 }}>
+                    <p style={{ fontSize: "12px", color: muted, lineHeight: 1.6 }}>
                       {p.desc}
                     </p>
                   </motion.div>

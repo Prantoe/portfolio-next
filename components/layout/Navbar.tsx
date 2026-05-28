@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import LogoIcon from "@/components/ui/LogoIcon";
-import { primary } from "@/lib/theme";
+import { primary, foreground } from "@/lib/theme";
 
 const menuItems = [
   { label: "ABOUT", href: "#about" },
@@ -61,7 +61,7 @@ export default function Navbar() {
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}
         >
           <motion.div style={{ width: logoSize, overflow: "visible" }}>
-            <LogoIcon color={onLight ? "#0c0e0c" : primary} />
+            <LogoIcon color={onLight ? foreground : primary} />
           </motion.div>
         </button>
 
@@ -71,8 +71,8 @@ export default function Navbar() {
           style={{
             padding: "10px 28px",
             borderRadius: "9999px",
-            backgroundColor: open ? "#0c0e0c" : primary,
-            color: open ? primary : "#0c0e0c",
+            backgroundColor: open ? foreground : primary,
+            color: open ? primary : foreground,
             border: open ? `1px solid ${primary}` : "none",
             fontWeight: "700",
             fontSize: "13px",
@@ -137,7 +137,7 @@ export default function Navbar() {
                     style={{
                       textAlign: "left",
                       fontWeight: "900",
-                      color: "#0c0e0c",
+                      color: foreground,
                       lineHeight: "1.1",
                       padding: "6px 0",
                       fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
@@ -166,20 +166,20 @@ export default function Navbar() {
                   display: "flex",
                   gap: "16px",
                   fontSize: "13px",
-                  color: "rgba(12,14,12,0.5)",
+                  color: "rgba(26,24,22,0.5)",
                 }}
               >
                 <a href="https://github.com/Prantoe" target="_blank" rel="noopener noreferrer"
                   style={{ color: "inherit", textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#0c0e0c")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(12,14,12,0.5)")}>
+                  onMouseEnter={e => (e.currentTarget.style.color = foreground)}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(26,24,22,0.5)")}>
                   GitHub
                 </a>
                 <span>·</span>
                 <a href="https://www.linkedin.com/in/pranto-suwarno-59b014165/" target="_blank" rel="noopener noreferrer"
                   style={{ color: "inherit", textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#0c0e0c")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(12,14,12,0.5)")}>
+                  onMouseEnter={e => (e.currentTarget.style.color = foreground)}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(26,24,22,0.5)")}>
                   LinkedIn
                 </a>
               </motion.div>

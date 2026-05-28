@@ -9,7 +9,7 @@ import {
   SiPostgresql, SiMongodb, SiMysql, SiSupabase, SiDocker, SiElasticsearch,
 } from "react-icons/si";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { primary } from "@/lib/theme";
+import { primary, primaryRgb, background, foreground, muted, borderColor, subtle } from "@/lib/theme";
 
 const iconMap: Record<string, React.ElementType> = {
   SiReact, SiNextdotjs, SiVuedotjs, SiNuxtdotjs: SiNuxt, SiTypescript, SiTailwindcss, SiMui,
@@ -72,7 +72,7 @@ export default function About() {
                       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "12px" }}>
                         <button
                           onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                          style={{ width: "96px", height: "96px", borderRadius: "50%", backgroundColor: "#0c0e0c", color: primary, fontSize: "11px", fontWeight: 700, border: "none", cursor: "pointer", letterSpacing: "0.02em", transition: "transform 0.2s" }}
+                          style={{ width: "96px", height: "96px", borderRadius: "50%", backgroundColor: foreground, color: primary, fontSize: "11px", fontWeight: 700, border: "none", cursor: "pointer", letterSpacing: "0.02em", transition: "transform 0.2s" }}
                           onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.07)")}
                           onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
                         >
@@ -128,29 +128,29 @@ export default function About() {
       <div id="skills" ref={panel2Ref} style={{ height: isMobile ? "auto" : "200vh", position: "relative" }}>
         <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100dvh", overflow: isMobile ? "visible" : "hidden" }}>
           <motion.div style={isMobile ? {} : { rotateX: rotateX2, scale: scale2, opacity: opacity2, transformPerspective: 1400, transformOrigin: "top center", height: "100%" }}>
-            <div style={{ backgroundColor: "#0c0e0c", color: "#e8ebe5", padding: p2, height: isMobile ? "auto" : "100%", boxSizing: "border-box", borderTop: "1px solid #1c1e1c" }}>
+            <div style={{ color: foreground, padding: p2, height: isMobile ? "auto" : "100%", boxSizing: "border-box", borderTop: `1px solid ${borderColor}` }}>
               <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
                 {/* What I Do */}
                 <div style={{ marginBottom: "44px" }}>
                   <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "14px" }}>What I Do</motion.p>
-                  <motion.h2 {...fadeUp(0.07)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#e8ebe5", marginBottom: "12px" }}>
+                  <motion.h2 {...fadeUp(0.07)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.02em", color: foreground, marginBottom: "12px" }}>
                     I build both the product{" "}
-                    <span style={{ color: "#555c52" }}>and the experience.</span>
+                    <span style={{ color: muted }}>and the experience.</span>
                   </motion.h2>
-                  <motion.p {...fadeUp(0.13)} style={{ color: "#555c52", fontSize: "13px", lineHeight: 1.65, marginBottom: "20px", maxWidth: "560px" }}>
+                  <motion.p {...fadeUp(0.13)} style={{ color: muted, fontSize: "13px", lineHeight: 1.65, marginBottom: "20px", maxWidth: "560px" }}>
                     Building products end-to-end, from backend systems to the details users actually see and feel.
                   </motion.p>
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "10px" }}>
                     {pillars.map((p, i) => (
                       <motion.div key={i} {...fadeUp(0.1 + i * 0.06)}
-                        style={{ padding: "16px", borderRadius: "12px", border: "1px solid #1c1e1c", backgroundColor: "#0f1110", transition: "border-color 0.2s" }}
-                        onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.2)")}
-                        onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "#1c1e1c")}
+                        style={{ padding: "16px", borderRadius: "12px", border: `1px solid ${borderColor}`, backgroundColor: subtle, transition: "border-color 0.2s" }}
+                        onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `rgba(${primaryRgb},0.4)`)}
+                        onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = borderColor)}
                       >
                         <span style={{ color: primary, fontSize: "16px", display: "block", marginBottom: "8px" }}>{p.icon}</span>
-                        <h3 style={{ fontSize: "12px", fontWeight: 600, color: "#e8ebe5", marginBottom: "5px" }}>{p.label}</h3>
-                        <p style={{ fontSize: "11px", color: "#555c52", lineHeight: 1.55 }}>{p.desc}</p>
+                        <h3 style={{ fontSize: "12px", fontWeight: 600, color: foreground, marginBottom: "5px" }}>{p.label}</h3>
+                        <p style={{ fontSize: "11px", color: muted, lineHeight: 1.55 }}>{p.desc}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -159,24 +159,24 @@ export default function About() {
                 {/* Tech Stack */}
                 <div>
                   <motion.p {...fadeUp(0.2)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "14px" }}>Tech Stack</motion.p>
-                  <motion.h2 {...fadeUp(0.26)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, letterSpacing: "-0.02em", color: "#e8ebe5", marginBottom: "20px" }}>
+                  <motion.h2 {...fadeUp(0.26)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, letterSpacing: "-0.02em", color: foreground, marginBottom: "20px" }}>
                     Tools I work with.
                   </motion.h2>
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                     {techStack.map((group, gi) => (
                       <motion.div key={gi} {...fadeUp(0.1 + gi * 0.09)}>
-                        <p style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#555c52", marginBottom: "10px" }}>{group.category}</p>
+                        <p style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: muted, marginBottom: "10px" }}>{group.category}</p>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                           {group.items.map(item => {
                             const Icon = iconMap[item.icon];
                             return (
                               <div key={item.name}
-                                style={{ display: "flex", alignItems: "center", gap: "6px", padding: "6px 12px", borderRadius: "8px", border: "1px solid #1c1e1c", backgroundColor: "#0f1110", transition: "border-color 0.2s, background-color 0.2s", cursor: "default" }}
-                                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.25)"; (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(212,175,55,0.04)"; }}
-                                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#1c1e1c"; (e.currentTarget as HTMLElement).style.backgroundColor = "#0f1110"; }}
+                                style={{ display: "flex", alignItems: "center", gap: "6px", padding: "6px 12px", borderRadius: "8px", border: `1px solid ${borderColor}`, backgroundColor: subtle, transition: "border-color 0.2s, background-color 0.2s", cursor: "default" }}
+                                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = `rgba(${primaryRgb},0.4)`; (e.currentTarget as HTMLElement).style.backgroundColor = `rgba(${primaryRgb},0.06)`; }}
+                                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = borderColor; (e.currentTarget as HTMLElement).style.backgroundColor = subtle; }}
                               >
-                                {Icon ? <Icon size={14} style={{ color: "#555c52" }} /> : <div style={{ width: "14px", height: "14px", borderRadius: "3px", backgroundColor: "#1c1e1c" }} />}
-                                <span style={{ fontSize: "11px", color: "#888c85" }}>{item.name}</span>
+                                {Icon ? <Icon size={14} style={{ color: muted }} /> : <div style={{ width: "14px", height: "14px", borderRadius: "3px", backgroundColor: borderColor }} />}
+                                <span style={{ fontSize: "11px", color: muted }}>{item.name}</span>
                               </div>
                             );
                           })}

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { primary } from "@/lib/theme";
+import { primary, background, foreground } from "@/lib/theme";
 import LogoIcon from "@/components/ui/LogoIcon";
 
 export default function Preloader() {
@@ -26,7 +26,7 @@ export default function Preloader() {
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            backgroundColor: "#0c0e0c",
+            backgroundColor: background,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -66,7 +66,7 @@ export default function Preloader() {
               }}
             >
               <LogoIcon
-                color="#0c0e0c"
+                color={foreground}
                 size={isMobile ? 120 : 180}
               />
             </motion.div>

@@ -8,6 +8,7 @@ import {
   SiNodedotjs, SiPython, SiDjango, SiLaravel, SiPhp,
   SiPostgresql, SiMongodb, SiMysql, SiSupabase, SiDocker, SiElasticsearch,
 } from "react-icons/si";
+import { primary, primaryRgb, background, foreground, muted, borderColor, subtle } from "@/lib/theme";
 
 const iconMap: Record<string, React.ElementType> = {
   SiReact, SiNextdotjs, SiVuedotjs, SiNuxtdotjs: SiNuxt, SiTypescript, SiTailwindcss,
@@ -45,8 +46,8 @@ export default function TechStack() {
             transformPerspective: 1400,
             transformOrigin: "top center",
             height: "100%",
-            backgroundColor: "#0c0e0c",
-            borderTop: "1px solid #1c1e1c",
+            backgroundColor: background,
+            borderTop: `1px solid ${borderColor}`,
           }}
         >
           <div
@@ -66,7 +67,7 @@ export default function TechStack() {
                 fontSize: "11px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#D4AF37",
+                color: primary,
                 marginBottom: "12px",
               }}
             >
@@ -78,7 +79,7 @@ export default function TechStack() {
                 fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
                 fontWeight: 900,
                 letterSpacing: "-0.02em",
-                color: "#e8ebe5",
+                color: foreground,
                 marginBottom: "32px",
               }}
             >
@@ -101,8 +102,8 @@ export default function TechStack() {
                   style={{
                     padding: "24px",
                     borderRadius: "16px",
-                    border: "1px solid #1c1e1c",
-                    backgroundColor: "#0f1110",
+                    border: `1px solid ${borderColor}`,
+                    backgroundColor: subtle,
                     display: "flex",
                     flexDirection: "column",
                     gap: "16px",
@@ -113,7 +114,7 @@ export default function TechStack() {
                       fontSize: "11px",
                       textTransform: "uppercase",
                       letterSpacing: "0.15em",
-                      color: "#D4AF37",
+                      color: primary,
                       fontWeight: 500,
                     }}
                   >
@@ -139,35 +140,35 @@ export default function TechStack() {
                             gap: "6px",
                             padding: "10px 6px",
                             borderRadius: "10px",
-                            border: "1px solid #1c1e1c",
+                            border: `1px solid ${borderColor}`,
                             cursor: "default",
                             transition: "border-color 0.2s, background-color 0.2s",
                           }}
                           onMouseEnter={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.25)";
-                            (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(212,175,55,0.04)";
+                            (e.currentTarget as HTMLElement).style.borderColor = `rgba(${primaryRgb},0.4)`;
+                            (e.currentTarget as HTMLElement).style.backgroundColor = `rgba(${primaryRgb},0.06)`;
                           }}
                           onMouseLeave={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "#1c1e1c";
+                            (e.currentTarget as HTMLElement).style.borderColor = borderColor;
                             (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
                           }}
                         >
                           {Icon ? (
-                            <Icon size={20} style={{ color: "#555c52", transition: "color 0.2s" }} />
+                            <Icon size={20} style={{ color: muted, transition: "color 0.2s" }} />
                           ) : (
                             <div
                               style={{
                                 width: "20px",
                                 height: "20px",
                                 borderRadius: "4px",
-                                backgroundColor: "#1c1e1c",
+                                backgroundColor: borderColor,
                               }}
                             />
                           )}
                           <span
                             style={{
                               fontSize: "9px",
-                              color: "#555c52",
+                              color: muted,
                               textAlign: "center",
                               lineHeight: 1.3,
                               transition: "color 0.2s",
