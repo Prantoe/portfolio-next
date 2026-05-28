@@ -82,9 +82,9 @@ export default function Hero() {
         className="relative z-10"
         style={{
           width: isMobile ? "100%" : "42%",
-          height: isMobile ? "70vw" : "100dvh",
+          height: isMobile ? "100vw" : "100dvh",
           maxHeight: isMobile ? "480px" : "none",
-          paddingTop: isMobile ? "80px" : "108px",
+          paddingTop: isMobile ? "140px" : "108px",
           paddingBottom: isMobile ? "0" : "60px",
           marginLeft: isMobile ? "0" : "100px",
           paddingRight: isMobile ? "0" : "16px",
@@ -160,7 +160,7 @@ export default function Hero() {
           flex: 1,
           paddingLeft: isMobile ? "24px" : "56px",
           paddingRight: isMobile ? "24px" : "48px",
-          paddingTop: isMobile ? "32px" : "0",
+          paddingTop: isMobile ? "60px" : "0",
           paddingBottom: isMobile ? "48px" : "0",
         }}
       >
