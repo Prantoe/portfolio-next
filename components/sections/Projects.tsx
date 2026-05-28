@@ -13,12 +13,17 @@ export default function Projects() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start 0.8", "start 0.2"] });
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  const { scrollYProgress: exitProgress } = useScroll({ target: sectionRef, offset: ["end 0.7", "end 0"] });
+  const headerY = useTransform(exitProgress, [0, 1], [0, -160]);
+  const headerOpacity = useTransform(exitProgress, [0, 0.6], [1, 0]);
+
   return (
     <section id="projects" ref={sectionRef} style={{ padding: isMobile ? "60px 24px 72px" : "80px 64px 96px", backgroundColor: "#0c0e0c" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "240px 1fr", gap: isMobile ? "32px" : "64px", alignItems: "start" }}>
 
         {/* ── LEFT: sticky header ── */}
         <div style={{ position: isMobile ? "relative" : "sticky", top: isMobile ? "auto" : "80px" }}>
+          <motion.div style={isMobile ? {} : { y: headerY, opacity: headerOpacity }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,6 +58,7 @@ export default function Projects() {
           >
             {String(projects.length).padStart(2, "0")} projects
           </motion.p>
+          </motion.div>
         </div>
 
         {/* ── RIGHT: cards ── */}
