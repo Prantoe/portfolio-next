@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function CursorGlow() {
+  const isMobile = useIsMobile();
   const [pos, setPos] = useState({ x: -999, y: -999 });
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
+    if (isMobile) return;
     const move = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
     const down = () => setDragging(true);
     const up = () => setDragging(false);
@@ -18,20 +21,20 @@ export default function CursorGlow() {
       window.removeEventListener("mousedown", down);
       window.removeEventListener("mouseup", up);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   const size = dragging ? 88 : 64;
 
   return (
     <>
-      {/* Background glow */}
       <div
         className="pointer-events-none fixed inset-0 z-30"
         style={{
           background: `radial-gradient(600px circle at ${pos.x}px ${pos.y}px, rgba(212,175,55,0.04), transparent 40%)`,
         }}
       />
-      {/* Inverting cursor */}
       <div
         className="pointer-events-none fixed z-[9999]"
         style={{

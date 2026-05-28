@@ -14,7 +14,12 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
-  cursor: none !important;
+}
+
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -28,7 +33,6 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* Grid background — mirip anish7.me */

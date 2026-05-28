@@ -52,7 +52,7 @@ export default function About() {
     <>
       {/* ── PANEL 1: About Me ── */}
       <div id="about" ref={panel1Ref} style={{ height: isMobile ? "auto" : "200vh", position: "relative" }}>
-        <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100vh", overflow: isMobile ? "visible" : "hidden" }}>
+        <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100dvh", overflow: isMobile ? "visible" : "hidden" }}>
           <motion.div style={isMobile ? {} : { rotateX: rotateX1, scale: scale1, opacity: opacity1, transformPerspective: 1400, transformOrigin: "top center", height: "100%" }}>
             <div className="no-scrollbar" style={{ backgroundColor: "#D4AF37", color: "#0c0e0c", padding: p, height: isMobile ? "auto" : "100%", boxSizing: "border-box", overflowY: isMobile ? "visible" : "auto", scrollbarWidth: "none" }}>
               <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -125,7 +125,7 @@ export default function About() {
 
       {/* ── PANEL 2: What I Do + Tech Stack ── */}
       <div id="skills" ref={panel2Ref} style={{ height: isMobile ? "auto" : "200vh", position: "relative" }}>
-        <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100vh", overflow: isMobile ? "visible" : "hidden" }}>
+        <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100dvh", overflow: isMobile ? "visible" : "hidden" }}>
           <motion.div style={isMobile ? {} : { rotateX: rotateX2, scale: scale2, opacity: opacity2, transformPerspective: 1400, transformOrigin: "top center", height: "100%" }}>
             <div style={{ backgroundColor: "#0c0e0c", color: "#e8ebe5", padding: p2, height: isMobile ? "auto" : "100%", boxSizing: "border-box", borderTop: "1px solid #1c1e1c" }}>
               <div style={{ maxWidth: "1280px", margin: "0 auto" }}>

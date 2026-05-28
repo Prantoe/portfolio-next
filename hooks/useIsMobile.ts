@@ -1,9 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const check = () => setIsMobile(window.innerWidth < breakpoint);
     check();
     window.addEventListener("resize", check);

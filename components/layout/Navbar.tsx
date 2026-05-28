@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -16,16 +16,20 @@ export default function Navbar() {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const [onLight, setOnLight] = useState(false);
+  const { scrollY } = useScroll();
+  const logoSize = useTransform(scrollY, [0, 120], isMobile ? [72, 48] : [100, 72]);
 
   useEffect(() => {
-    const aboutEl = document.querySelector("#about");
-    if (!aboutEl) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setOnLight(entry.isIntersecting),
-      { threshold: 0.05 }
-    );
-    observer.observe(aboutEl);
-    return () => observer.disconnect();
+    const check = () => {
+      const el = document.querySelector("#about") as HTMLElement | null;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const mid = window.innerHeight / 2;
+      setOnLight(rect.top < mid && rect.bottom > mid);
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    return () => window.removeEventListener("scroll", check);
   }, []);
 
   const scrollTo = (href: string) => {
@@ -55,7 +59,17 @@ export default function Navbar() {
           aria-label="Home"
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}
         >
-          <Image src="/assets/icon3.png" alt="Logo" width={isMobile ? 56 : 80} height={isMobile ? 56 : 80} style={{ objectFit: "contain", filter: onLight ? "brightness(0)" : "none", transition: "filter 0.3s ease" }} />
+          <motion.img
+            src="/assets/icon3.png"
+            alt="Logo"
+            style={{
+              width: logoSize,
+              height: logoSize,
+              objectFit: "contain",
+              filter: onLight ? "brightness(0)" : "none",
+              transition: "filter 0.3s ease",
+            }}
+          />
         </button>
 
         {/* MENU / CLOSE button — lime green pill */}

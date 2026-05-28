@@ -26,11 +26,16 @@ export default function Hero() {
   const scanY = useMotionValue(-20);
 
   useEffect(() => {
-    const el = document.querySelector("#about");
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => setOnGold(e.isIntersecting), { threshold: 0.1 });
-    obs.observe(el);
-    return () => obs.disconnect();
+    const check = () => {
+      const el = document.querySelector("#about") as HTMLElement | null;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const mid = window.innerHeight / 2;
+      setOnGold(rect.top < mid && rect.bottom > mid);
+    };
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    return () => window.removeEventListener("scroll", check);
   }, []);
 
   useEffect(() => {
@@ -53,7 +58,7 @@ export default function Hero() {
       id="home"
       style={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "100dvh",
         display: "flex",
         flexDirection: isMobile ? "column" : "row",
         overflow: "hidden",
@@ -73,7 +78,7 @@ export default function Hero() {
         className="relative z-10"
         style={{
           width: isMobile ? "100%" : "42%",
-          height: isMobile ? "70vw" : "100vh",
+          height: isMobile ? "70vw" : "100dvh",
           maxHeight: isMobile ? "480px" : "none",
           paddingTop: isMobile ? "80px" : "108px",
           paddingBottom: isMobile ? "0" : "60px",
@@ -93,7 +98,7 @@ export default function Hero() {
           <div style={{ position: "absolute", inset: 0, backgroundColor: "#D4AF37", clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }} />
           <div
             ref={photoContainerRef}
-            style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", clipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 82% 100%, 0% 100%)" }}
+            style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }}
             onMouseEnter={() => setPhotoHovered(true)}
             onMouseLeave={() => setPhotoHovered(false)}
           >
@@ -106,6 +111,35 @@ export default function Hero() {
             />
             <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: "#D4AF37", mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
           </div>
+
+          {/* Corner brackets — marching snake */}
+          {[
+            { style: { top: 0, left: 0 },     d: "M 0 28 L 0 0 L 28 0" },
+            { style: { top: 0, right: 0 },    d: "M 0 0 L 28 0 L 28 28" },
+            { style: { bottom: 0, left: 0 },  d: "M 0 0 L 0 28 L 28 28" },
+            { style: { bottom: 0, right: 0 }, d: "M 28 0 L 28 28 L 0 28" },
+          ].map(({ style, d }, i) => (
+            <svg key={i} width={30} height={30} viewBox="0 0 30 30" style={{ position: "absolute", ...style, zIndex: 6, pointerEvents: "none" }}>
+              <motion.path
+                d={d}
+                fill="none"
+                stroke="#D4AF37"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, pathOffset: 0, opacity: 0 }}
+                animate={{
+                  pathLength: [0, 0.35, 0.35, 0],
+                  pathOffset: [0, 0,    0.65, 1],
+                  opacity: 1,
+                }}
+                transition={{
+                  pathLength: { duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.25, 0.75, 1], repeatDelay: 0.4 + i * 0.15 },
+                  pathOffset: { duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.25, 0.75, 1], repeatDelay: 0.4 + i * 0.15 },
+                  opacity:    { duration: 0.3, delay: 0.8 + i * 0.1 },
+                }}
+              />
+            </svg>
+          ))}
         </div>
       </div>
 
@@ -121,10 +155,10 @@ export default function Hero() {
         }}
       >
         <motion.div initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}>
-          <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(3rem, 4.5vw, 2.5rem)" }}>
+          <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(2rem, 4.5vw, 3.5rem)" }}>
             <ScrambleText className="text-[#555]" />{" "}There!
           </h1>
-          <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(3rem, 4.5vw, 2.5rem)" }}>
+          <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(2rem, 4.5vw, 3.5rem)" }}>
             I'm{" "}
             <span className="italic text-[#D4AF37]" style={{ fontFamily: "var(--font-serif)", fontSize: isMobile ? "2rem" : "60px", fontWeight: 400 }}>
               Pranto Soearno
