@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: "#0c0e0c", borderTop: "1px solid #1c1e1c", padding: isMobile ? "64px 24px" : "160px 64px 120px" }}
+      style={{ backgroundColor: "#0c0e0c", borderTop: "1px solid #1c1e1c", padding: isMobile ? "140px 24px 64px" : "160px 64px 120px" }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "80px", alignItems: "start" }}>
 
@@ -93,11 +93,11 @@ export default function Contact() {
         <motion.form
           {...fadeUp(0.18)}
           onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "14px" }}
+          style={{ display: "flex", flexDirection: "column", gap: "12px" }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
             {(["name", "email"] as const).map(field => (
-              <div key={field} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <div key={field} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                 <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "#555c52" }}>
                   {field === "name" ? "Your Name" : "Email"}
                 </label>
@@ -115,7 +115,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "#555c52" }}>
               Message
             </label>
