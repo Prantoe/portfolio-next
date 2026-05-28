@@ -7,7 +7,7 @@ import { personal } from "@/data/content";
 import { FiGithub, FiLinkedin, FiInstagram, FiFileText } from "react-icons/fi";
 import ScrambleText from "@/components/ui/ScrambleText";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { primary } from "@/lib/theme";
+import { primary, primaryRgb } from "@/lib/theme";
 
 const socialLinks = [
   { href: personal.links.github, Icon: FiGithub, label: "GitHub" },
@@ -113,7 +113,7 @@ export default function Hero() {
               style={{ filter: photoHovered ? "grayscale(70%)" : "grayscale(100%)", objectFit: "cover", objectPosition: "center top", transition: "filter 0.5s ease" }}
               priority
             />
-            <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: primary, mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
+            <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: primary, mixBlendMode: "difference", boxShadow: `0 0 12px rgba(${primaryRgb},0.8), 0 0 32px rgba(${primaryRgb},0.4)`, pointerEvents: "none", zIndex: 5 }} />
           </div>
 
           {/* Corner brackets — sync with scan */}

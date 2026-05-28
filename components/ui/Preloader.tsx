@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { primary } from "@/lib/theme";
+import LogoIcon from "@/components/ui/LogoIcon";
 
 export default function Preloader() {
   const [phase, setPhase] = useState<"drawing" | "filling" | "done">("drawing");
@@ -65,12 +65,9 @@ export default function Preloader() {
                 justifyContent: "center",
               }}
             >
-              <Image
-                src="/assets/icon3.png"
-                alt="PS"
-                width={isMobile ? 130 : 200}
-                height={isMobile ? 130 : 200}
-                style={{ objectFit: "contain", filter: "brightness(0)" }}
+              <LogoIcon
+                color="#0c0e0c"
+                size={isMobile ? 120 : 180}
               />
             </motion.div>
           </div>

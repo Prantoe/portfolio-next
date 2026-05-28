@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import LogoIcon from "@/components/ui/LogoIcon";
 import { primary } from "@/lib/theme";
 
 const menuItems = [
@@ -60,17 +60,9 @@ export default function Navbar() {
           aria-label="Home"
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}
         >
-          <motion.img
-            src="/assets/icon3.png"
-            alt="Logo"
-            style={{
-              width: logoSize,
-              height: logoSize,
-              objectFit: "contain",
-              filter: onLight ? "brightness(0)" : "none",
-              transition: "filter 0.3s ease",
-            }}
-          />
+          <motion.div style={{ width: logoSize, overflow: "visible" }}>
+            <LogoIcon color={onLight ? "#0c0e0c" : primary} />
+          </motion.div>
         </button>
 
         {/* MENU / CLOSE button — lime green pill */}
