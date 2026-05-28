@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
 import Image from "next/image";
 import { personal } from "@/data/content";
 import { FiGithub, FiLinkedin, FiInstagram, FiFileText } from "react-icons/fi";
@@ -22,6 +22,7 @@ export default function Hero() {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   const [onGold, setOnGold] = useState(false);
+  const [scanRunning, setScanRunning] = useState(false);
   const photoContainerRef = useRef<HTMLDivElement>(null);
   const scanY = useMotionValue(-20);
 
@@ -42,15 +43,17 @@ export default function Hero() {
     let cancelled = false;
     const loop = async () => {
       if (cancelled) return;
+      setScanRunning(true);
       const h = photoContainerRef.current?.offsetHeight ?? 600;
       scanY.set(-20);
       await animate(scanY, h + 20, { duration: 3.5, ease: "linear" });
       if (cancelled) return;
+      setScanRunning(false);
       await new Promise<void>(r => setTimeout(r, 4000 + Math.random() * 3000));
       loop();
     };
-    const t = setTimeout(loop, 1500 + Math.random() * 1000);
-    return () => { cancelled = true; clearTimeout(t); };
+    const t = setTimeout(loop, 3800 + Math.random() * 300);
+    return () => { cancelled = true; clearTimeout(t); setScanRunning(false); };
   }, [scanY]);
 
   return (
@@ -112,34 +115,40 @@ export default function Hero() {
             <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: "#D4AF37", mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
           </div>
 
-          {/* Corner brackets — marching snake */}
-          {[
-            { style: { top: 0, left: 0 },     d: "M 0 28 L 0 0 L 28 0" },
-            { style: { top: 0, right: 0 },    d: "M 0 0 L 28 0 L 28 28" },
-            { style: { bottom: 0, left: 0 },  d: "M 0 0 L 0 28 L 28 28" },
-            { style: { bottom: 0, right: 0 }, d: "M 28 0 L 28 28 L 0 28" },
-          ].map(({ style, d }, i) => (
-            <svg key={i} width={30} height={30} viewBox="0 0 30 30" style={{ position: "absolute", ...style, zIndex: 6, pointerEvents: "none" }}>
-              <motion.path
-                d={d}
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, pathOffset: 0, opacity: 0 }}
-                animate={{
-                  pathLength: [0, 0.35, 0.35, 0],
-                  pathOffset: [0, 0,    0.65, 1],
-                  opacity: 1,
-                }}
-                transition={{
-                  pathLength: { duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.25, 0.75, 1], repeatDelay: 0.4 + i * 0.15 },
-                  pathOffset: { duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.25, 0.75, 1], repeatDelay: 0.4 + i * 0.15 },
-                  opacity:    { duration: 0.3, delay: 0.8 + i * 0.1 },
-                }}
-              />
-            </svg>
-          ))}
+          {/* Corner brackets — sync with scan */}
+          <AnimatePresence>
+            {scanRunning && [
+              { style: { top: 0, left: 0 },     d: "M 0 50 L 0 0 L 50 0" },
+              { style: { bottom: 0, right: 0 }, d: "M 50 0 L 50 50 L 0 50" },
+            ].map(({ style, d }, i) => (
+              <motion.svg
+                key={i}
+                width={44} height={44} viewBox="0 0 44 44" overflow="visible"
+                style={{ position: "absolute", ...style, zIndex: 6, pointerEvents: "none" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.08 }}
+              >
+                <motion.path
+                  d={d}
+                  fill="none"
+                  stroke="#D4AF37"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, pathOffset: 0 }}
+                  animate={{
+                    pathLength: [0, 0.35, 0.35, 0],
+                    pathOffset: [0, 0,    0.65, 1],
+                  }}
+                  transition={{
+                    pathLength: { duration: 1.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", times: [0, 0.25, 0.75, 1] },
+                    pathOffset: { duration: 1.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", times: [0, 0.25, 0.75, 1] },
+                  }}
+                />
+              </motion.svg>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
 
