@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { projects } from "@/data/content";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 export default function Projects() {
   const isMobile = useIsMobile();
@@ -23,7 +24,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#D4AF37", marginBottom: "16px" }}
+            style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "16px" }}
           >
             Selected Work
           </motion.p>
@@ -40,7 +41,7 @@ export default function Projects() {
 
           {/* animated line */}
           <div style={{ height: "1px", backgroundColor: "#1c1e1c", overflow: "hidden", marginBottom: "20px" }}>
-            <motion.div style={{ height: "100%", backgroundColor: "#D4AF37", width: lineWidth }} />
+            <motion.div style={{ height: "100%", backgroundColor: primary, width: lineWidth }} />
           </div>
 
           <motion.p
@@ -85,7 +86,7 @@ export default function Projects() {
                   {p.year}
                 </div>
 
-                <div style={{ position: "absolute", bottom: "14px", left: "14px", backgroundColor: "#D4AF37", color: "#0c0e0c", fontSize: "11px", fontWeight: 700, padding: "4px 12px", borderRadius: "4px" }}>
+                <div style={{ position: "absolute", bottom: "14px", left: "14px", backgroundColor: primary, color: "#0c0e0c", fontSize: "11px", fontWeight: 700, padding: "4px 12px", borderRadius: "4px" }}>
                   {p.name}
                 </div>
               </div>
@@ -102,9 +103,9 @@ export default function Projects() {
                       href={p.visit}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ padding: "6px 14px", backgroundColor: "#D4AF37", color: "#0c0e0c", fontSize: "10px", fontWeight: 700, borderRadius: "4px", textDecoration: "none", flexShrink: 0, transition: "background-color 0.2s" }}
+                      style={{ padding: "6px 14px", backgroundColor: primary, color: "#0c0e0c", fontSize: "10px", fontWeight: 700, borderRadius: "4px", textDecoration: "none", flexShrink: 0, transition: "background-color 0.2s" }}
                       onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff")}
-                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#D4AF37")}
+                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = primary)}
                     >
                       Visit ↗
                     </a>

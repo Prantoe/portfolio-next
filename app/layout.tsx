@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import LenisProvider from "@/components/providers/LenisProvider";
+import { primary, primaryDark } from "@/lib/theme";
 import "./globals.css";
 
 const geist = Geist({
@@ -30,7 +31,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${geist.variable} ${playfair.variable}`} style={{ "--primary": primary, "--primary-dark": primaryDark } as React.CSSProperties}>
       <body className="min-h-screen antialiased" suppressHydrationWarning>
         <LenisProvider>{children}</LenisProvider>
       </body>

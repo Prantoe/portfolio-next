@@ -6,6 +6,7 @@ import { personal } from "@/data/content";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -48,14 +49,14 @@ export default function Contact() {
 
         {/* ── LEFT ── */}
         <div>
-          <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#D4AF37", marginBottom: "24px" }}>
+          <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "24px" }}>
             Let&apos;s Work Together
           </motion.p>
 
           <motion.h2 {...fadeUp(0.08)} style={{ fontSize: isMobile ? "clamp(2rem, 8vw, 2.8rem)" : "clamp(2.8rem, 5vw, 5rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#e8ebe5", marginBottom: "40px" }}>
             Have a project<br />
             in mind?{" "}
-            <span style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontStyle: "italic", color: "#D4AF37" }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontStyle: "italic", color: primary }}>
               Let&apos;s build it.
             </span>
           </motion.h2>
@@ -133,9 +134,9 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status !== "idle"}
-            style={{ padding: "16px 32px", backgroundColor: status === "sent" ? "#1c1e1c" : "#D4AF37", color: status === "sent" ? "#D4AF37" : "#0c0e0c", fontWeight: 700, fontSize: "14px", letterSpacing: "0.04em", border: status === "sent" ? "1px solid #2a2e28" : "none", borderRadius: "10px", cursor: status !== "idle" ? "default" : "pointer", opacity: status === "sending" ? 0.7 : 1, transition: "background-color 0.2s" }}
+            style={{ padding: "16px 32px", backgroundColor: status === "sent" ? "#1c1e1c" : primary, color: status === "sent" ? primary : "#0c0e0c", fontWeight: 700, fontSize: "14px", letterSpacing: "0.04em", border: status === "sent" ? "1px solid #2a2e28" : "none", borderRadius: "10px", cursor: status !== "idle" ? "default" : "pointer", opacity: status === "sending" ? 0.7 : 1, transition: "background-color 0.2s" }}
             onMouseEnter={e => { if (status === "idle") (e.currentTarget.style.backgroundColor = "#ffffff"); }}
-            onMouseLeave={e => { if (status === "idle") (e.currentTarget.style.backgroundColor = "#D4AF37"); }}
+            onMouseLeave={e => { if (status === "idle") (e.currentTarget.style.backgroundColor = primary); }}
           >
             {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent ✓" : "Send Message →"}
           </button>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 export default function CursorGlow() {
   const isMobile = useIsMobile();
@@ -43,7 +44,7 @@ export default function CursorGlow() {
           width: size,
           height: size,
           borderRadius: "50%",
-          backgroundColor: "#D4AF37",
+          backgroundColor: primary,
           mixBlendMode: "difference",
           transform: "translate(-50%, -50%)",
           transition: "width 0.2s ease, height 0.2s ease",

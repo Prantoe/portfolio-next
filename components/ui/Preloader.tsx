@@ -3,9 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 export default function Preloader() {
   const [phase, setPhase] = useState<"drawing" | "filling" | "done">("drawing");
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("filling"), 1900);
@@ -31,13 +34,13 @@ export default function Preloader() {
           }}
         >
           {/* Polygon + logo */}
-          <div style={{ position: "relative", width: 280, height: 280 }}>
-            <svg viewBox="0 0 200 200" width={280} height={280} style={{ position: "absolute", inset: 0 }}>
+          <div style={{ position: "relative", width: isMobile ? 180 : 280, height: isMobile ? 180 : 280 }}>
+            <svg viewBox="0 0 200 200" width={isMobile ? 180 : 280} height={isMobile ? 180 : 280} style={{ position: "absolute", inset: 0 }}>
               <motion.path
                 d="M 40 0 L 200 0 L 200 166 L 160 200 L 0 200 L 0 40 Z"
-                stroke="#D4AF37"
+                stroke={primary}
                 strokeWidth="2"
-                style={{ fill: "#D4AF37" }}
+                style={{ fill: primary }}
                 initial={{ pathLength: 0, fillOpacity: 0 }}
                 animate={{
                   pathLength: 1,
@@ -65,8 +68,8 @@ export default function Preloader() {
               <Image
                 src="/assets/icon3.png"
                 alt="PS"
-                width={200}
-                height={200}
+                width={isMobile ? 130 : 200}
+                height={isMobile ? 130 : 200}
                 style={{ objectFit: "contain", filter: "brightness(0)" }}
               />
             </motion.div>
@@ -74,7 +77,7 @@ export default function Preloader() {
 
           {/* Progress bar */}
           <motion.div
-            style={{ position: "absolute", bottom: 0, left: 0, height: "2px", backgroundColor: "#D4AF37" }}
+            style={{ position: "absolute", bottom: 0, left: 0, height: "2px", backgroundColor: primary }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 2.7, ease: "easeInOut" }}

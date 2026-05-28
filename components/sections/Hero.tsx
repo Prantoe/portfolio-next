@@ -7,6 +7,7 @@ import { personal } from "@/data/content";
 import { FiGithub, FiLinkedin, FiInstagram, FiFileText } from "react-icons/fi";
 import ScrambleText from "@/components/ui/ScrambleText";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 const socialLinks = [
   { href: personal.links.github, Icon: FiGithub, label: "GitHub" },
@@ -98,7 +99,7 @@ export default function Hero() {
           height: "100%",
           flexShrink: 0,
         }}>
-          <div style={{ position: "absolute", inset: 0, backgroundColor: "#D4AF37", clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundColor: primary, clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }} />
           <div
             ref={photoContainerRef}
             style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", clipPath: "polygon(20% 0%, 100% 0%, 100% 83%, 80% 100%, 0% 100%, 0% 20%)" }}
@@ -112,18 +113,18 @@ export default function Hero() {
               style={{ filter: photoHovered ? "grayscale(70%)" : "grayscale(100%)", objectFit: "cover", objectPosition: "center top", transition: "filter 0.5s ease" }}
               priority
             />
-            <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: "#D4AF37", mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
+            <motion.div style={{ position: "absolute", left: 0, right: 0, top: scanY, height: 14, backgroundColor: primary, mixBlendMode: "difference", boxShadow: "0 0 12px rgba(212,175,55,0.8), 0 0 32px rgba(212,175,55,0.4)", pointerEvents: "none", zIndex: 5 }} />
           </div>
 
           {/* Corner brackets — sync with scan */}
           <AnimatePresence>
             {scanRunning && [
-              { style: { top: 0, left: 0 },     d: "M 0 50 L 0 0 L 50 0" },
-              { style: { bottom: 0, right: 0 }, d: "M 50 0 L 50 50 L 0 50" },
+              { style: { top: 0, left: 0 },     d: isMobile ? "M 0 22 L 0 0 L 22 0" : "M 0 50 L 0 0 L 50 0" },
+              { style: { bottom: 0, right: 0 }, d: isMobile ? "M 22 0 L 22 22 L 0 22" : "M 50 0 L 50 50 L 0 50" },
             ].map(({ style, d }, i) => (
               <motion.svg
                 key={i}
-                width={44} height={44} viewBox="0 0 44 44" overflow="visible"
+                width={isMobile ? 24 : 44} height={isMobile ? 24 : 44} viewBox={isMobile ? "0 0 24 24" : "0 0 44 44"} overflow="visible"
                 style={{ position: "absolute", ...style, zIndex: 6, pointerEvents: "none" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -133,7 +134,7 @@ export default function Hero() {
                 <motion.path
                   d={d}
                   fill="none"
-                  stroke="#D4AF37"
+                  stroke={primary}
                   strokeWidth="3"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, pathOffset: 0 }}
@@ -169,7 +170,7 @@ export default function Hero() {
           </h1>
           <h1 className="font-black text-white leading-none tracking-tight" style={{ fontSize: isMobile ? "2.2rem" : "clamp(2rem, 4.5vw, 3.5rem)" }}>
             I'm{" "}
-            <span className="italic text-[#D4AF37]" style={{ fontFamily: "var(--font-serif)", fontSize: isMobile ? "2rem" : "60px", fontWeight: 400 }}>
+            <span className="italic" style={{ fontFamily: "var(--font-serif)", fontSize: isMobile ? "2rem" : "60px", fontWeight: 400, color: primary }}>
               Pranto Soearno
             </span>
           </h1>
@@ -187,15 +188,15 @@ export default function Hero() {
           style={{ display: "flex", gap: "12px", marginBottom: "24px", flexWrap: "wrap" }}
         >
           <button onClick={() => scroll("#projects")}
-            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: "#D4AF37", color: "#0c0e0c", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: "2px solid #D4AF37", cursor: "pointer", transition: "background-color 0.2s, color 0.2s" }}
+            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: primary, color: "#0c0e0c", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: `2px solid ${primary}`, cursor: "pointer", transition: "background-color 0.2s, color 0.2s" }}
             onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#0c0e0c"; e.currentTarget.style.color = "#ffffff"; }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#D4AF37"; e.currentTarget.style.color = "#0c0e0c"; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = primary; e.currentTarget.style.color = "#0c0e0c"; }}
           >
             My Projects
           </button>
           <button onClick={() => scroll("#about")}
-            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: "transparent", color: "#ffffff", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: "2px solid #D4AF37", cursor: "pointer", transition: "all 0.2s" }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#D4AF37"; e.currentTarget.style.color = "#0c0e0c"; }}
+            style={{ padding: isMobile ? "12px 24px" : "16px 32px", backgroundColor: "transparent", color: "#ffffff", fontWeight: "700", fontSize: "14px", letterSpacing: "0.05em", border: `2px solid ${primary}`, cursor: "pointer", transition: "all 0.2s" }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = primary; e.currentTarget.style.color = "#0c0e0c"; }}
             onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#ffffff"; }}
           >
             About Me
@@ -208,7 +209,7 @@ export default function Hero() {
           {socialLinks.map(({ href, Icon, label }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
               style={{ width: isMobile ? "40px" : "48px", height: isMobile ? "40px" : "48px", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #2a2e28", backgroundColor: "#111", color: "#888", transition: "all 0.2s", textDecoration: "none" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#D4AF37"; (e.currentTarget as HTMLElement).style.color = "#D4AF37"; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = primary; (e.currentTarget as HTMLElement).style.color = primary; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#2a2e28"; (e.currentTarget as HTMLElement).style.color = "#888"; }}
             >
               <Icon size={17} />
@@ -221,11 +222,11 @@ export default function Hero() {
       <motion.button
         initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
         onClick={() => scroll("#contact")}
-        style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 50, width: "48px", height: "48px", borderRadius: "50%", backgroundColor: onGold ? "#0c0e0c" : "#D4AF37", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: onGold ? "0 0 28px rgba(0,0,0,0.4)" : "0 0 28px rgba(212,175,55,0.55)", border: onGold ? "2px solid #D4AF37" : "none", cursor: "pointer", transition: "background-color 0.3s, box-shadow 0.3s, border 0.3s" }}
+        style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 50, width: "48px", height: "48px", borderRadius: "50%", backgroundColor: onGold ? "#0c0e0c" : primary, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: onGold ? "0 0 28px rgba(0,0,0,0.4)" : "0 0 28px rgba(212,175,55,0.55)", border: onGold ? `2px solid ${primary}` : "none", cursor: "pointer", transition: "background-color 0.3s, box-shadow 0.3s, border 0.3s" }}
         aria-label="Contact"
       >
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke={onGold ? "#D4AF37" : "#0c0e0c"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke={onGold ? primary : "#0c0e0c"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </motion.button>
     </section>

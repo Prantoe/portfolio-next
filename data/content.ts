@@ -72,6 +72,7 @@ export const techStack = [
       { name: "Nuxt.js", icon: "SiNuxtdotjs" },
       { name: "TypeScript", icon: "SiTypescript" },
       { name: "Tailwind CSS", icon: "SiTailwindcss" },
+      { name: "Material UI", icon: "SiMui" },
     ],
   },
   {

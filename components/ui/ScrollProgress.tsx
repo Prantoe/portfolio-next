@@ -1,6 +1,7 @@
 "use client";
 
 import { useScroll, motion } from "framer-motion";
+import { primary } from "@/lib/theme";
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -15,7 +16,7 @@ export default function ScrollProgress() {
         height: "4px",
         scaleX: scrollYProgress,
         transformOrigin: "left",
-        backgroundColor: "#D4AF37",
+        backgroundColor: primary,
         mixBlendMode: "difference",
         zIndex: 100,
       }}

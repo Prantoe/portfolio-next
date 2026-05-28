@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 const menuItems = [
   { label: "ABOUT", href: "#about" },
@@ -78,9 +79,9 @@ export default function Navbar() {
           style={{
             padding: "10px 28px",
             borderRadius: "9999px",
-            backgroundColor: open ? "#0c0e0c" : "#D4AF37",
-            color: open ? "#D4AF37" : "#0c0e0c",
-            border: open ? "1px solid #D4AF37" : "none",
+            backgroundColor: open ? "#0c0e0c" : primary,
+            color: open ? primary : "#0c0e0c",
+            border: open ? `1px solid ${primary}` : "none",
             fontWeight: "700",
             fontSize: "13px",
             letterSpacing: "0.12em",
@@ -124,7 +125,7 @@ export default function Navbar() {
                 zIndex: 40,
                 height: "100%",
                 width: "clamp(260px, 35%, 420px)",
-                backgroundColor: "#D4AF37",
+                backgroundColor: primary,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",

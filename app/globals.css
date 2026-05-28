@@ -2,7 +2,7 @@
 
 :root {
   --bg: #0c0e0c;
-  --accent: #D4AF37;
+  --accent: var(--primary, #D4AF37);
   --text: #ffffff;
   --muted: #6b7068;
 }
@@ -54,7 +54,7 @@ body > * {
 }
 
 ::selection {
-  background: #D4AF37;
+  background: var(--primary, #D4AF37);
   color: #0c0e0c;
 }
 

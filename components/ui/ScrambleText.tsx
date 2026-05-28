@@ -3,7 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-const GREETINGS = ["Hello","こんにちは", "Bonjour","你好", "Hola",  "السلام عليكم", "Ciao","Привет","Olá","Merhaba"];
+const GREETINGS = [
+  "Hello",          // English
+  "こんにちは",      // Japanese
+  "Bonjour",        // French
+  "你好",            // Chinese
+  "Hola",           // Spanish
+  "السلام عليكم",   // Arabic
+  "Ciao",           // Italian
+  "Halo",            // Indonesian
+  "Привет",         // Russian
+  "Olá",            // Portuguese
+  "Merhaba",        // Turkish
+  "안녕하세요",       // Korean
+  "Hi",
+  "नमस्ते",         // Hindi
+  "Hallo",          // German
+  "สวัสดี",         // Thai
+  "Xin chào"       // Vietnamese
+];
 
 function scramble(target: string, progress: number): string {
   return target

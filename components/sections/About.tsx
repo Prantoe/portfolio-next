@@ -4,14 +4,15 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { personal, experience, education, stats, techStack } from "@/data/content";
 import {
-  SiReact, SiNextdotjs, SiVuedotjs, SiNuxt, SiTypescript, SiTailwindcss,
+  SiReact, SiNextdotjs, SiVuedotjs, SiNuxt, SiTypescript, SiTailwindcss, SiMui,
   SiNodedotjs, SiPython, SiDjango, SiLaravel, SiPhp,
   SiPostgresql, SiMongodb, SiMysql, SiSupabase, SiDocker, SiElasticsearch,
 } from "react-icons/si";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { primary } from "@/lib/theme";
 
 const iconMap: Record<string, React.ElementType> = {
-  SiReact, SiNextdotjs, SiVuedotjs, SiNuxtdotjs: SiNuxt, SiTypescript, SiTailwindcss,
+  SiReact, SiNextdotjs, SiVuedotjs, SiNuxtdotjs: SiNuxt, SiTypescript, SiTailwindcss, SiMui,
   SiNodedotjs, SiPython, SiDjango, SiLaravel, SiPhp,
   SiPostgresql, SiMongodb, SiMysql, SiSupabase, SiDocker, SiElasticsearch,
 };
@@ -54,7 +55,7 @@ export default function About() {
       <div id="about" ref={panel1Ref} style={{ height: isMobile ? "auto" : "200vh", position: "relative" }}>
         <div style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100dvh", overflow: isMobile ? "visible" : "hidden" }}>
           <motion.div style={isMobile ? {} : { rotateX: rotateX1, scale: scale1, opacity: opacity1, transformPerspective: 1400, transformOrigin: "top center", height: "100%" }}>
-            <div className="no-scrollbar" style={{ backgroundColor: "#D4AF37", color: "#0c0e0c", padding: p, height: isMobile ? "auto" : "100%", boxSizing: "border-box", overflowY: isMobile ? "visible" : "auto", scrollbarWidth: "none" }}>
+            <div className="no-scrollbar" style={{ backgroundColor: primary, color: "#0c0e0c", padding: p, height: isMobile ? "auto" : "100%", boxSizing: "border-box", overflowY: isMobile ? "visible" : "auto", scrollbarWidth: "none" }}>
               <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
                 <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.4em", color: "rgba(12,14,12,0.45)", marginBottom: "10px", marginTop: "24px" }}>
@@ -71,7 +72,7 @@ export default function About() {
                       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "12px" }}>
                         <button
                           onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                          style={{ width: "96px", height: "96px", borderRadius: "50%", backgroundColor: "#0c0e0c", color: "#D4AF37", fontSize: "11px", fontWeight: 700, border: "none", cursor: "pointer", letterSpacing: "0.02em", transition: "transform 0.2s" }}
+                          style={{ width: "96px", height: "96px", borderRadius: "50%", backgroundColor: "#0c0e0c", color: primary, fontSize: "11px", fontWeight: 700, border: "none", cursor: "pointer", letterSpacing: "0.02em", transition: "transform 0.2s" }}
                           onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.07)")}
                           onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
                         >
@@ -132,7 +133,7 @@ export default function About() {
 
                 {/* What I Do */}
                 <div style={{ marginBottom: "44px" }}>
-                  <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#D4AF37", marginBottom: "14px" }}>What I Do</motion.p>
+                  <motion.p {...fadeUp(0)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "14px" }}>What I Do</motion.p>
                   <motion.h2 {...fadeUp(0.07)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.02em", color: "#e8ebe5", marginBottom: "12px" }}>
                     I build both the product{" "}
                     <span style={{ color: "#555c52" }}>and the experience.</span>
@@ -147,7 +148,7 @@ export default function About() {
                         onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.2)")}
                         onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "#1c1e1c")}
                       >
-                        <span style={{ color: "#D4AF37", fontSize: "16px", display: "block", marginBottom: "8px" }}>{p.icon}</span>
+                        <span style={{ color: primary, fontSize: "16px", display: "block", marginBottom: "8px" }}>{p.icon}</span>
                         <h3 style={{ fontSize: "12px", fontWeight: 600, color: "#e8ebe5", marginBottom: "5px" }}>{p.label}</h3>
                         <p style={{ fontSize: "11px", color: "#555c52", lineHeight: 1.55 }}>{p.desc}</p>
                       </motion.div>
@@ -157,7 +158,7 @@ export default function About() {
 
                 {/* Tech Stack */}
                 <div>
-                  <motion.p {...fadeUp(0.2)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#D4AF37", marginBottom: "14px" }}>Tech Stack</motion.p>
+                  <motion.p {...fadeUp(0.2)} style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.2em", color: primary, marginBottom: "14px" }}>Tech Stack</motion.p>
                   <motion.h2 {...fadeUp(0.26)} style={{ fontSize: isMobile ? "1.6rem" : "clamp(1.6rem, 2.5vw, 2.4rem)", fontWeight: 900, letterSpacing: "-0.02em", color: "#e8ebe5", marginBottom: "20px" }}>
                     Tools I work with.
                   </motion.h2>
