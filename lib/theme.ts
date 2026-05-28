@@ -1,4 +1,4 @@
-export const primary = "#D4AF37";
+export const primary = "#8CC0EB"; //D4AF37
 export const primaryDark = "#0c0e0c";
 
 function hexToRgb(hex: string) {
